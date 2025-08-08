@@ -1,5 +1,9 @@
 from playwright.sync_api import sync_playwright, expect
+import pytest
 
+
+@pytest.mark.courses
+@pytest.mark.regression
 def test_empty_courses_list():
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=False)
@@ -46,5 +50,4 @@ def test_empty_courses_list():
         result_description = page.get_by_test_id('courses-list-empty-view-description-text')
         expect(result_description).to_be_visible()
         expect(result_description).to_have_text('Results from the load test pipeline will be displayed here')
-
 
