@@ -20,4 +20,4 @@ def test_empty_courses_list(chromium_page_with_state):
     result_description = chromium_page_with_state.get_by_test_id('courses-list-empty-view-description-text')
     expect(result_description).to_be_visible()
     expect(result_description).to_have_text('Results from the load test pipeline will be displayed here')
-    #
+
