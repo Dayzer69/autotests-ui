@@ -8,8 +8,8 @@ from playwright.sync_api import expect, Page
     ("  ", "password")],
     ids= [
         'Проверяем, что пользователь не может войти в систему с невалидными email и password',
-       'Проверяем, что пользователь не может войти в систему с невалидным email, и пустым password',
-       'Проверяем, что пользователь не может войти в систему с пустым email, и невалидным password'
+        'Проверяем, что пользователь не может войти в систему с невалидным email, и пустым password',
+        'Проверяем, что пользователь не может войти в систему с пустым email, и невалидным password'
     ]
 )
 def test_wrong_email_or_password_authorization(chromium_page: Page, email: str, password: str):
