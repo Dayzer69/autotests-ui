@@ -21,3 +21,4 @@ class DashboardPage(BasePage):
         self.scores_chart_view = ChartViewComponent(page, "scores", "scatter")
 
 
+

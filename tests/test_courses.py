@@ -10,9 +10,8 @@ def test_empty_courses_list(courses_list_page: CoursesListPage):
     courses_list_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/')
     courses_list_page.navbar.check_visible('username')
     courses_list_page.sidebar.check_visible()
-    courses_list_page.check_courses_title_is_visible()
-    courses_list_page.check_create_course_button_is_visible()
-    courses_list_page.check_empty_view()
+    courses_list_page.toolbar_view.check_visible()
+    courses_list_page.check_visible_empty_view()
 
 
 @pytest.mark.courses
@@ -22,13 +21,13 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     create_course_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create')
     create_course_page.create_course_toolbar.check_visible(is_create_course_disabled=True)
     create_course_page.check_visible_image_preview_empty_view()
-    create_course_page.check_visible_image_upload_view(is_image_uploaded=False)
+    create_course_page.image_upload_widget.check_visible(is_image_uploaded=False)
     create_course_page.create_course_form.check_visible(
         title="", max_score="0", min_score="0", description="", estimated_time="")
     create_course_page.create_exercise_toolbar.check_visible()
     create_course_page.check_visible_exercises_empty_view()
-    create_course_page.upload_preview_image('./testdata/files/image.png')
-    create_course_page.check_visible_image_upload_view(is_image_uploaded=True)
+    create_course_page.image_upload_widget.upload_preview_image('./testdata/files/image.png')
+    create_course_page.image_upload_widget.check_visible(is_image_uploaded=True)
     create_course_page.create_course_form.fill(
         title='Playwright',
         estimated_time='2 weeks',
@@ -38,13 +37,12 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     )
     create_course_page.create_course_toolbar.check_visible(is_create_course_disabled=False)
     create_course_page.create_course_toolbar.click_create_course_button()
-    courses_list_page.check_courses_title_is_visible()
-    courses_list_page.check_create_course_button_is_visible()
-    courses_list_page.check_visible_course_card(
-        0,
-        'Playwright',
-        '100',
-        '10',
-        '2 weeks'
+    courses_list_page.toolbar_view.check_visible()
+    courses_list_page.course_view.check_visible(
+        index=0,
+        title='Playwright',
+        max_score='100',
+        min_score='10',
+        estimated_time='2 weeks'
     )
 
