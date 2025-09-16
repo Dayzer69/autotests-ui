@@ -1,12 +1,28 @@
+import pytest
+import allure
 from pages.courses.courses_list_page import CoursesListPage
 from pages.courses.create_course_page import CreateCoursePage
-import pytest
+from tools.allure.features import AllureFeature
+from tools.allure.stories import AllureStory
+from tools.allure.epics import AllureEpic
+from tools.allure.tags import AllureTag
+from allure_commons.types import Severity
+
 
 
 @pytest.mark.courses
 @pytest.mark.regression
-# @pytest.mark.flaky(reruns=3, reruns_delay=2)
+@pytest.mark.flaky(reruns=3, reruns_delay=2)
+@allure.tag(AllureTag.REGRESSION, AllureTag.COURSES)
+@allure.epic(AllureEpic.LMS)
+@allure.feature(AllureFeature.COURSES)
+@allure.story(AllureStory.COURSES)
+@allure.parent_suite(AllureEpic.LMS)
+@allure.suite(AllureFeature.COURSES)
+@allure.sub_suite(AllureStory.COURSES)
 class TestCourses:
+    @allure.title("Check displaying of empty courses list")
+    @allure.severity(Severity.NORMAL)
     def test_empty_courses_list(self, courses_list_page: CoursesListPage):
         courses_list_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/')
         courses_list_page.navbar.check_visible('username')
@@ -14,6 +30,8 @@ class TestCourses:
         courses_list_page.toolbar_view.check_visible()
         courses_list_page.check_visible_empty_view()
 
+    @allure.title("Create course")
+    @allure.severity(Severity.CRITICAL)
     def test_create_course(self, create_course_page: CreateCoursePage, courses_list_page: CoursesListPage):
         create_course_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create')
         create_course_page.create_course_toolbar.check_visible(is_create_course_disabled=True)
@@ -43,6 +61,8 @@ class TestCourses:
             estimated_time='2 weeks'
         )
 
+    @allure.title("Edit course")
+    @allure.severity(Severity.CRITICAL)
     def test_edit_course(self, create_course_page: CreateCoursePage, courses_list_page: CoursesListPage):
         create_course_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create')
         create_course_page.create_course_form.fill(
