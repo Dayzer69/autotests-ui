@@ -3,6 +3,7 @@ import re
 from components.base_component import BaseComponent
 from elements.button import Button
 from elements.text import Text
+import allure
 
 class CoursesListToolbarViewComponent(BaseComponent):
     def __init__(self, page: Page):
@@ -13,11 +14,13 @@ class CoursesListToolbarViewComponent(BaseComponent):
             page, 'courses-list-toolbar-create-course-button', 'Create Course Button'
         )
 
+    @allure.step('Check that label "Courses" is visible')
     def check_visible(self):
         self.title.check_visible()
         self.title.check_have_text('Courses')
 
         self.create_course_button.check_visible()
+
 
     def click_create_course_button(self):
         self.create_course_button.click()
