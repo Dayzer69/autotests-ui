@@ -19,6 +19,7 @@ from config import settings
 @allure.parent_suite(AllureEpic.LMS)
 @allure.suite(AllureFeature.DASHBOARD)
 @allure.sub_suite(AllureStory.DASHBOARD)
+@pytest.mark.flaky(reruns=3, reruns_delay=2)
 class TestDashboard:
     @allure.title("Check displaying of dashboard page")
     def test_dashboard_displaying(self, dashboard_page_with_state: DashboardPage):

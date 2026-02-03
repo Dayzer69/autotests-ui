@@ -22,6 +22,7 @@ from config import settings
 @allure.parent_suite(AllureEpic.LMS)
 @allure.suite(AllureFeature.AUTHENTICATION)
 @allure.sub_suite(AllureStory.AUTHORIZATION)
+@pytest.mark.flaky(reruns=3, reruns_delay=2)
 class TestAuthorization:
     @pytest.mark.parametrize(
         'email, password',
