@@ -20,6 +20,7 @@ from config import settings
 @allure.parent_suite(AllureEpic.LMS)
 @allure.suite(AllureFeature.AUTHENTICATION)
 @allure.sub_suite(AllureStory.REGISTRATION)
+@pytest.mark.xdist_group(name="authorization-group")
 class TestRegistration:
     @allure.title("Registration with correct email, username and password")
     @allure.severity(Severity.CRITICAL)

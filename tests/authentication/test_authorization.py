@@ -23,6 +23,7 @@ from config import settings
 @allure.suite(AllureFeature.AUTHENTICATION)
 @allure.sub_suite(AllureStory.AUTHORIZATION)
 @pytest.mark.flaky(reruns=3, reruns_delay=2)
+@pytest.mark.xdist_group(name="authorization-group")
 class TestAuthorization:
     @pytest.mark.parametrize(
         'email, password',
