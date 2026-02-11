@@ -51,8 +51,8 @@ jobs:
     steps:
       - name: Download test-results
         uses: actions/download-artifact@v5
-        with:
-          name: allure-results
+#        with:
+#          name: allure-results
 
       # 5. Шаг для получения истории отчётов Allure, если она существует
       - name: Get Allure history
