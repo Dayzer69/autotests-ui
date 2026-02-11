@@ -38,6 +38,10 @@ jobs:
         run: |
           pytest -m regression --alluredir=allure-results --numprocesses 2  
 
+  publish-report:
+    runs-on: ubuntu-latest  # Указываем, что тесты будут запускаться на последней версии Ubuntu
+
+    steps:
       # 5. Шаг для получения истории отчётов Allure, если она существует
       - name: Get Allure history
         uses: actions/checkout@v4  # Опять клонируем репозиторий, чтобы получить историю отчётов
