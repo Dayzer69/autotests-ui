@@ -41,7 +41,7 @@ jobs:
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
         with:
-          name: test_results
+          name: allure-results
           path: allure-results
 
   publish-report:
@@ -49,10 +49,10 @@ jobs:
     runs-on: ubuntu-latest  # Указываем, что тесты будут запускаться на последней версии Ubuntu
 
     steps:
-      - name: Download a test-results
+      - name: Download test-results
         uses: actions/download-artifact@v5
         with:
-          name: test_results
+          name: allure-results
 
       # 5. Шаг для получения истории отчётов Allure, если она существует
       - name: Get Allure history
